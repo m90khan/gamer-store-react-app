@@ -2,8 +2,8 @@
 
 <br />
 <p align="center">
-  <a href="https://dazzling-mclean-a17029.netlify.app/">
-    <img src="./app\assets\images\svg\bonfire.svg" alt="Logo" width="120" height="120">
+  <a href="https://github.com/m90khan/gamer-store-react-app/">
+    <img src="./src/img/logo.svg" alt="Logo" width="120" height="120">
   </a>
 
   <h3 align="center">GamerStore | Search and View Games </h3>
@@ -13,7 +13,7 @@ Games Search Engine <br />
     <a href="m90khan@gmail.com"><strong>Contact Me</strong></a>
     <br />
     <br />
-    <a href="https://dazzling-mclean-a17029.netlify.app/">View Demo</a>
+    <a href="https://github.com/m90khan/gamer-store-react-app/">View Demo</a>
     
    </p>
 </p>
@@ -30,7 +30,7 @@ Games Search Engine <br />
 
 ### About the Project
 
-Live: https://dazzling-mclean-a17029.netlify.app/
+Live: https://github.com/m90khan/gamer-store-react-app/
 
 <img src="./src\img\GamerStore-Cover.jpg">
 
@@ -68,64 +68,55 @@ Live: https://dazzling-mclean-a17029.netlify.app/
 ### Code Snippet
 
 ```javascript
-import throttle from 'lodash/throttle';
-import debounce from 'lodash/debounce';
-class TourPackage {
-  constructor(query) {
-    this.revealPackages = query;
-    this.hideInitial();
-    this.scrollThrottle = throttle(this.calcCaller, 200).bind(this);
-    this.windowHeight = window.innerHeight;
-    this.events();
+import dotenv from 'dotenv';
+dotenv.config();
+// Base URL
+const baseUrl = 'https://api.rawg.io/api/';
+const apiKey = process.env.REACT_APP_GAME_API_KEY;
+// Date
+const getCurrentMonth = () => {
+  const month = new Date().getMonth();
+  if (month < 10) {
+    return `0${month}`;
+  } else {
+    return month;
   }
+};
+const getCurrentDate = () => {
+  const day = new Date().getDay();
 
-  events() {
-    window.addEventListener('scroll', this.scrollThrottle);
-    window.addEventListener(
-      'resize',
-      debounce(() => {
-        this.windowHeight = window.innerHeight;
-      }, 333)
-    );
+  if (day < 10) {
+    return `0${day}`;
+  } else {
+    return day;
   }
-  calcCaller() {
-    this.revealPackages.forEach((el) => {
-      if (el.isVisible == false) {
-        this.calculateScroll(el);
-      }
-    });
-  }
-  calculateScroll(el) {
-    if (window.scrollY + this.windowHeight > el.offsetTop) {
-      let scrollPercent = (el.getBoundingClientRect().y / this.windowHeight) * 100;
-      if (scrollPercent < 70) {
-        let className = 0;
-        this.GenerateHTML(el, className);
-        el.classList.add('package__reveal--visible');
+};
+const currentYear = new Date().getFullYear();
+const currentMonth = getCurrentMonth();
+const currentDay = getCurrentDate();
+// current Date
+const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+// Last Year
+const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
+const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
-        el.isVisible = true;
-        if (el.isLastItem) {
-          window.removeEventListener('scroll', this.scrollThrottle);
-        }
-      }
-    }
-  }
-  hideInitial() {
-    this.revealPackages.forEach((el) => {
-      el.classList.add('package__reveal');
-      el.isVisible = false;
-    });
-    this.revealPackages[this.revealPackages.length - 1].isLastItem = true;
-  }
-  GenerateHTML(el, className) {
-    const arr = [];
-    if (el.classList.contains('feature')) {
-      console.log(el, className);
-    }
-  }
-}
-
-export default TourPackage;
+//Popular Games
+// https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added
+//filter
+const popularGames = `games?key=${apiKey}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=4`;
+const upcomingGames = `games?dates=${currentDate},${nextYear}&ordering=-added&page_size=4`;
+const newGames = `games?dates=${lastYear},${currentDate}&ordering=-released&page_size=4`;
+// url concatenation
+export const popularGamesURL = () => `${baseUrl}${popularGames}`;
+export const upcomingGamesURL = () => `${baseUrl}${upcomingGames}`;
+export const newGamesURL = () => `${baseUrl}${newGames}`;
+//GAME DETAILS
+export const gameDetailsURL = (game_id) => `${baseUrl}games/${game_id}`;
+//Game ScreenShots
+export const gameScreenshotURL = (game_id) => `${baseUrl}games/${game_id}/screenshots`;
+//Searched game
+export const searchGameURL = (game_name) =>
+  `${baseUrl}games?search=${game_name}&page_size=9`;
 ```
 
 ---
