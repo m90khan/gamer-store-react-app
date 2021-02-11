@@ -135,8 +135,8 @@ export const searchGameURL = (game_name) =>
 ---
 
 [youtube]: https://www.youtube.com/channel/UC96rVfdTKsjZpREnH6CaCOw
-[twitter]: https://twitter.com/m90khan
+[twitter]: https://twitter.com/uxdkhan
 [linkedin]: https://www.linkedin.com/in/uxdkhan
-[instagram]: https://www.instagram.com/uxd.khan/
+[instagram]: https://www.instagram.com/uxdkhan/
 [behance]: https://www.behance.net/Khan_Mohsin
 [dribble]: https://dribbble.com/uxdkhan
