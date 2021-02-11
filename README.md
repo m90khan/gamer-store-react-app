@@ -2,7 +2,7 @@
 
 <br />
 <p align="center">
-  <a href="https://github.com/m90khan/gamer-store-react-app/">
+  <a href="https://gamer-store-react-app.vercel.app/">
     <img src="./src/img/logo.svg" alt="Logo" width="120" height="120">
   </a>
 
@@ -13,7 +13,7 @@ Games Search Engine <br />
     <a href="m90khan@gmail.com"><strong>Contact Me</strong></a>
     <br />
     <br />
-    <a href="https://github.com/m90khan/gamer-store-react-app/">View Demo</a>
+    <a href="https://gamer-store-react-app.vercel.app/">View Demo</a>
     
    </p>
 </p>
@@ -30,7 +30,7 @@ Games Search Engine <br />
 
 ### About the Project
 
-Live: https://github.com/m90khan/gamer-store-react-app/
+Live:https://gamer-store-react-app.vercel.app/
 
 <img src="./src\img\GamerStore-Cover.jpg">
 
